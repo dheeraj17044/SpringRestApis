@@ -27,11 +27,36 @@ public class CourseController {
         return new ResponseEntity<>(courseService.getCourses(),HttpStatus.OK);
     }
 
-    @GetMapping("/courses/{courseId}")
+    @GetMapping("/courses/nativeQuery")
+    public ResponseEntity<List<Course>> getAllCoursesByNativeQuery(){
+        return new ResponseEntity<>(courseService.getAllCoursesByNativeQuery(),HttpStatus.OK);
+    }
+
+    @GetMapping("/courses/id/{courseId}")
     public ResponseEntity<Course> getCourse(@PathVariable String courseId){
         Course course = courseService.getCourse(courseId);
         return new ResponseEntity<>(course,HttpStatus.OK);
     }
+
+    @GetMapping("/courses/title/{courseTitle}")
+    public ResponseEntity<List<Course>> getCoursesByTitle(@PathVariable String courseTitle){
+        List<Course> list = courseService.getCourseByTitle(courseTitle);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @GetMapping("/courses/title/professor/{courseTitle}/{courseProfessor}")
+    public ResponseEntity<Course> getCoursesByTitleAndProfessor(@PathVariable String courseTitle,@PathVariable String courseProfessor){
+        Course list = courseService.getCoursesByTitleAndProfessor(courseTitle,courseProfessor);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @GetMapping("/courses/titlewithpattern")
+    public ResponseEntity<List<Course>> getCoursesByTitleWithPattern(@RequestParam String courseTitleWithPattern){
+//        Course list = courseService.getCoursesByTitleAndProfessor(courseTitle);
+        List<Course> list = courseService.getCoursesByTitleWithPattern(courseTitleWithPattern);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
 
     @PostMapping("/courses")
     public ResponseEntity<Object> addCourse(@RequestBody AddCourseRequestDto course){

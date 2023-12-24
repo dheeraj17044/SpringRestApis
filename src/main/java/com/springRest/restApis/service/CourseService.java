@@ -17,4 +17,13 @@ public interface CourseService {
     void deleteCourse(String courseId);
 
     int updateCourse(UpdateCourseRequestDto course);
+
+    List<Course> getCourseByTitle(String title);
+
+    Course getCoursesByTitleAndProfessor(String courseTitle, String courseProfessor);
+
+
+    List<Course> getCoursesByTitleWithPattern(String courseTitleWithPattern);
+
+    List<Course> getAllCoursesByNativeQuery();
 }

@@ -58,4 +58,25 @@ public class CourseServiceImpl implements CourseService{
         }
         return -1;
     }
+
+    @Override
+    public List<Course> getCourseByTitle(String title) {
+        return courseDao.findByTitle(title);
+    }
+
+    @Override
+    public Course getCoursesByTitleAndProfessor(String courseTitle, String courseProfessor) {
+        return courseDao.findByTitleAndProfessor(courseTitle,courseProfessor);
+    }
+
+    @Override
+    public List<Course> getCoursesByTitleWithPattern(String courseTitleWithPattern) {
+        return courseDao.findByTitleLike(courseTitleWithPattern);
+    }
+
+    @Override
+    public List<Course> getAllCoursesByNativeQuery() {
+        return courseDao.getAllCourse();
+    }
+
 }
