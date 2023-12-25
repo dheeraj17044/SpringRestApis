@@ -10,10 +10,18 @@ import java.util.List;
 @Repository
 public interface CourseDao extends JpaRepository<Course,Integer> {
 
+
+//    ********** Derived Query methods *************
+
+
     List<Course> findByTitle(String title);
     Course findByTitleAndProfessor(String title, String professor);
 
     List<Course> findByTitleLike(String likePattern);
+
+
+
+//    *********** Custom Finder Methods ************
 
     @Query(value="select * from course",nativeQuery = true)
     List<Course> getAllCourse();
